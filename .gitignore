@@ -1,0 +1,37 @@
+# CMake build directories
+build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install/
+
+# Executables and object files
+*.exe        # Windows executables
+*.o          # Object files
+*.so         # Shared libraries (Linux)
+*.dylib      # Dynamic libraries (macOS)
+*.dll        # Dynamic link libraries (Windows)
+
+# IDE specific files (examples - add yours)
+.vscode/      # VS Code settings and launch configurations
+.idea/        # JetBrains IDE settings (CLion, etc.)
+*.swp         # Vim temporary files
+*~            # Emacs backup files
+
+# Editor specific files (examples)
+.#*           # Emacs temporary files
+
+# Dependency specific files (if you use vcpkg, Conan, etc. - adjust as needed)
+vcpkg/
+conan/
+
+# Operating System generated files
+.DS_Store     # macOS specific file
+Thumbs.db     # Windows thumbnail cache
+
+# Log files (if you generate any)
+*.log
+
+# Any other files you don't want to track in Git
+# For example, if you generate output data files:
+# output_data/
