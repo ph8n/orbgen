@@ -30,8 +30,9 @@ add_executable(orbgen ${SOURCES})
 # COMPILER FLAGS
 target_compile_options(orbgen PRIVATE
   -Wall       # Enable most common warnings
-  -Wextra     # Enable extra warnings (often useful)
+  -Wextra     # Enable extra warnings
   -Werror     # Treat all warnings as errors
+  -fsanitize=address # Enable address sanitizer
 )
 
 # EXTERNAL LIB INCLUDE DIRECTORIES
