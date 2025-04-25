@@ -12,20 +12,12 @@ set(CMAKE_C_EXTENSIONS OFF)
 # COMPILER
 set(CMAKE_C_COMPILER clang)
 
-# ---------- Enable AddressSanitizer for Debug Builds ----------
-# These options will be ADDED to the target's options after it's defined.
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-  # Add compile flags for ASan
-  add_compile_options(-fsanitize=address)
-  # Add linker flags for ASan runtime library
-  add_link_options(-fsanitize=address)
-endif()
-# -----------------------------------------------------------
-
-
 # EXTERNAL LIBS
+find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
 find_package(SDL2 REQUIRED)
-find_package(Vulkan REQUIRED)
+find_package(glfw3 REQUIRED)
+
 
 # SOURCE/HEADER FILES
 set(SOURCES
@@ -39,20 +31,25 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(orbgen ${SOURCES})
 
 target_compile_options(orbgen PRIVATE
+  -g          # Debug info
   -Wall       # Enable most common warnings
-  -Wextra     # Enable extra warnings (often useful)
+  -Wextra     # Enable extra warnings
   -Werror     # Treat all warnings as errors
 )
 
 # EXTERNAL LIB INCLUDE DIRECTORIES
 target_include_directories(orbgen PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/include
-  ${Vulkan_INCLUDE_DIRS}
+  ${GLEW_INCLUDE_DIRS}
+  ${OPENGL_INCLUDE_DIRS}
   ${SDL2_INCLUDE_DIRS}
+  ${GLFW3_INCLUDE_DIRS}
 )
 
 # LINK LIBS
 target_link_libraries(orbgen PRIVATE
-  ${Vulkan_LIBRARIES}
+  GLEW::GLEW
+  ${OPENGL_LIBRARIES}
   ${SDL2_LIBRARIES}
+  ${GLFW3_LIBRARIES}
 )
