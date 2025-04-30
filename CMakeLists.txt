@@ -16,12 +16,13 @@ set(CMAKE_C_COMPILER clang)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(SDL2 REQUIRED)
-find_package(glfw3 REQUIRED)
 
 
 # SOURCE/HEADER FILES
 set(SOURCES
   src/main.c
+  src/vec.c
+  src/physics.c
 )
 
 # LSP
@@ -43,7 +44,6 @@ target_include_directories(orbgen PRIVATE
   ${GLEW_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${SDL2_INCLUDE_DIRS}
-  ${GLFW3_INCLUDE_DIRS}
 )
 
 # LINK LIBS
@@ -51,5 +51,4 @@ target_link_libraries(orbgen PRIVATE
   GLEW::GLEW
   ${OPENGL_LIBRARIES}
   ${SDL2_LIBRARIES}
-  ${GLFW3_LIBRARIES}
 )
